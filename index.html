@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>曹煜珑 - 个人简历</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #2980b9;
+            margin-top: 25px;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            margin: 10px 0;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>曹煜珑</h1>
+        <div class="contact-info">
+            学校邮箱：202283270231@nuist.edu.cn <br>
+            个人邮箱：cylmiracle@foxmail.com
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>教育背景</h2>
+        <div class="education-grid">
+            <!-- 时间与学校信息 -->
+            <div class="time">2016年-2019年：</div>
+            <div class="school">南京师范大学附属中学江宁分校</div>
+
+            <div class="time">2019年-2022年：</div>
+            <div class="school">南京师范大学附属中学</div>
+
+            <div class="time">2022年-至今：</div>
+            <div class="school"><strong>南京信息工程大学（双一流）电子与信息工程学院 通信工程专业</strong></div>
+
+        </div>
+    </div>
+
+    <style>
+        .education-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            /* 第一列自适应宽度，第二列填充剩余空间 */
+            gap: 5px 15px;
+            /* 行间距 5px，列间距 15px */
+            margin-top: 10px;
+        }
+
+        .time {
+            text-align: left;
+            color: #555;
+        }
+
+        .school {
+            text-align: left;
+        }
+
+        /* 保留原有高亮样式 */
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+    </style>
+
+
+    <div class="section">
+        <h2>学业成绩</h2>
+        <div class="score-grid">
+            <!-- 表头 -->
+            <div class="front header">项目</div>
+            <div class="back header">必修成绩</div>
+            <div class="back header">推免成绩</div>
+
+            <!-- 专业排名 -->
+            <div class="front">专业排名：</div>
+            <div class="back"><span class="highlight">2/209（1%）</span></div>
+            <div class="back"><span class="highlight">3/203（1%）🏆</span></div>
+
+            <!-- GPA -->
+            <div class="front">GPA：</div>
+            <div class="back"><span class="highlight">4.117/5.0</span></div>
+            <div class="back"><span class="highlight">4./5.0 ⚡</span></div>
+
+            <!-- 加权平均分 -->
+            <div class="front">加权平均分：</div>
+            <div class="back"><span class="highlight">90.98</span></div>
+            <div class="back"><span class="highlight">95.50 🌟</span></div>
+
+            <!-- 荣誉（跨列显示） -->
+            <div class="front">荣誉：</div>
+            <div class="back full-width">校级三好学生标兵（院前 1%，2 次）、校一等奖学金（2023 年度，2024 年度）</div>
+        </div>
+    </div>
+
+    <style>
+        .score-grid {
+            display: grid;
+            grid-template-columns: auto 1fr 1fr;
+            /* 三列：项目名、第五学期、第六学期 */
+            gap: 6px 12px;
+            /* 缩小行间隙和列间隙 */
+            margin-top: 8px;
+            /* 缩小顶部间距 */
+        }
+
+        .front {
+            text-align: left;
+            color: #555;
+            font-weight: normal;
+            padding: 2px 0;
+            /* 减小单元格内边距 */
+        }
+
+        .back {
+            text-align: left;
+            padding: 2px 0;
+            /* 减小单元格内边距 */
+        }
+
+        /* 表头样式 */
+        .header {
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: 1px solid #ddd;
+            /* 更细的分隔线 */
+            padding-bottom: 3px;
+            /* 缩小表头下边距 */
+            margin-bottom: 2px;
+            /* 表头与内容的间距 */
+        }
+
+        /* 荣誉跨列 */
+        .full-width {
+            grid-column: span 2;
+            margin-top: 4px;
+            /* 荣誉与上方内容的间距 */
+        }
+
+        /* 高亮样式 */
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        /* 第六学期特效 */
+        .back span:nth-child(2) {
+            color: #f39c12;
+        }
+
+        .full-career-link {
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .full-career-link a {
+            background-color: #f8f9fa;
+            padding: 5px 10px;
+            border-radius: 4px;
+            border: 1px solid #3498db;
+            color: #2980b9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .full-career-link a:hover {
+            color: #e74c3c;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 1px;
+        }
+    </style>
+
+
+
+    <div class="section">
+        <h2>英语能力</h2>
+        <p>2023年06月：通过 CET-6：548 <br>
+            2022年12月：通过 CET-4：559</p>
+    </div>
+
+    <div class="section">
+        <h2>竞赛成果</h2>
+        <p class="full-career-link">
+            <a href="table.html" target="_blank">完整的比赛经历 →</a>
+        </p>
+        <p>代表性成果如下：</p>
+        <ul>
+            <li><strong>第 49 届 ICPC 国际大学生程序设计竞赛亚洲区域赛昆明站 银奖</strong> | 2024.12</li>
+            <li><strong>2024 年中国大学生程序设计竞赛国赛郑州站 银奖</strong> | 2024.11</li>
+            <li><strong>第 49 届 ICPC 国际大学生程序设计竞赛亚洲区域赛成都站 铜奖</strong> | 2024.11</li>
+            <li><strong>2024 年中国大学生程序设计竞赛国赛重庆站 铜奖</strong> | 2024.11</li>
+            <li><strong>第 15 届蓝桥杯全国总决赛 C/C++ 程序设计 B 组 国家二等奖</strong> | 2024.06</li>
+        </ul>
+
+        <!-- <ul>
+            <li>2022年10月04日：2022 南京信息工程大学新生赛正式赛 第三名</li>
+
+            <li>2023年04月16日：2023年第一次省赛选拔赛 第十八名</li>
+
+            <li>2023年04月29日：2023年第二次省赛选拔赛 第一名</li>
+
+            <li>2023年04月23日：第 14 届蓝桥杯江苏赛区 C/C++ 程序设计 B 组 江苏省一等奖</li>
+
+            <li>2023年05月07日：南京信息工程大学第四届程序设计竞赛团体赛 金奖、第四名</li>
+
+            <li>2023年05月28日：2023 江苏省大学生程序设计大赛 铜奖</li>
+
+            <li>2023年06月16日：第 14 届蓝桥杯全国总决赛 C/C++ 程序设计 B 组 国家三等奖</li>
+
+            <li>2023年10月21日：南京信息工程大学2023年个人赛 第三名</li>
+
+            <li>2023年10月29日：2023 年中国大学生程序设计竞赛国赛桂林站 铁奖</li>
+
+            <li>2023年11月12日：第 48 届 ICPC 国际大学生程序设计竞赛亚洲区域赛沈阳站 铁奖</li>
+
+            <li>2023年12月03日：第 48 届 ICPC 国际大学生程序设计竞赛亚洲区域赛济南站 铁奖</li>
+
+            <li><strong>2024年05月12日：2024 江苏省大学生程序设计大赛 金奖</strong></li>
+
+            <li><strong>2024年05月18日：南京信息工程大学第五届程序设计竞赛团体赛 金奖、亚军</strong></li>
+
+            <li>2024年05月26日：2024 年中国大学生程序设计竞赛 全国邀请赛 山东站 铁奖</li>
+
+            <li><strong>2024年06月02日：第 15 届蓝桥杯全国总决赛 C/C++ 程序设计 B 组 国家二等奖</strong> </li>
+
+            <li>2024年10月27日：第 49 届 ICPC 国际大学生程序设计竞赛亚洲区域赛成都站 铜奖</li>
+
+            <li>2024年11月10日： 2024 年中国大学生程序设计竞赛国赛重庆站 铜奖</li>
+
+            <li><strong>2024年11月17日： 2024 年中国大学生程序设计竞赛国赛郑州站 银奖</strong></li>
+
+            <li><strong>2024年12月01日：第 49 届 ICPC 国际大学生程序设计竞赛亚洲区域赛昆明站 银奖</strong></li>
+
+        </ul> -->
+    </div>
+
+    <div class="section">
+        <h2>科研经历</h2>
+        <ul>
+            <li>
+                <strong>基于生成对抗网络（GAN）的图结构扰动隐私保护模型研究（在研）</strong> | 2025.01-至今
+                <ul>
+                    <li>研究目标：解决传统网络拓扑模糊化中安全性与功能性能的平衡问题，提出目标约束下的图结构扰动生成方案，实现拓扑隐蔽性与服务性能的双重优化。</li>
+                    <li>个人贡献：负责整个生成对抗网络架构设计与实现</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>学生工作</h2>
+        <ul>
+            <li>
+                <strong>电信院科学技术协会网络部部长</strong> | 2024.04-2025.04
+                <ul>
+                    <li>组织院级活动 C 语言培训，单片机培训多场，参与人数超 300 人</li>
+                    <li>组织校级活动电子爬虫比赛，参与人数 50 人</li>
+                    <li>负责日常维护电信院微信公众号科技推文，学术推文的撰写与发布总计 190 余篇</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>访学交流</h2>
+        <p>我曾参与两次江苏高校学生境外学习政府奖学金短期项目。</p>
+        <ul>
+            <li>
+                <strong>日本东京大学</strong> | "新质生产力与科研素养"课程 | 2024.07.15-2024.08.14
+                <ul>
+                    <li>课程：由东京大学教授团队授课，内容包括智能时代变革、定量数据分析入门和人工智能与机器学习等。</li>
+                    <li>参观访问：参观了东京证券交易所、格力高埼玉工厂等企业，访问东京国立博物馆，体验茶道文化等活动。</li>
+                </ul>
+            </li>
+            <li>
+                <strong>澳门科技大学</strong> | "信息技术与大数据智能化应用"课程 | 2023.08.01-2023.08.14
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

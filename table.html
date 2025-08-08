@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>比赛生涯记录</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .tips {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 15px 25px;
+            min-width: 160px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.85;
+        }
+
+        .table-container {
+            padding: 25px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+            
+        }
+
+        thead {
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            color: white;
+        }
+
+        th {
+            padding: 18px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+            
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background-color: #e3f2fd;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        td {
+            padding: 16px 15px;
+            font-size: 1rem;
+            text-align: center
+        }
+
+        .date-col {
+            font-weight: 600;
+            color: #2c3e50;
+            min-width: 140px;
+        }
+
+        .medal-gold {
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .medal-silver {
+            color: #c0c0c0;
+            font-weight: bold;
+        }
+
+        .medal-bronze {
+            color: #CD7F32;
+            font-weight: bold;
+        }
+
+        .medal-iron {
+            color: #A9A9A9;
+            font-weight: bold;
+        }
+
+        .highlight-row {
+            background-color: #fffde7 !important;
+            font-weight: bold;
+        }
+
+        /* 年份分隔行样式 */
+        .divider {
+            background: linear-gradient(to right, #4a6491, #2c3e50) !important;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .divider td {
+            padding: 10px 15px;
+            text-align: center !important;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .divider:hover {
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            background-color: #f8f9fa;
+        }
+
+        @media (max-width: 768px) {
+
+            th,
+            td {
+                padding: 12px 8px;
+                font-size: 0.9rem;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .stats {
+                gap: 15px;
+            }
+
+            .stat-card {
+                padding: 12px 15px;
+                min-width: 130px;
+            }
+
+            .stat-value {
+                font-size: 1.8rem;
+            }
+
+            .divider td {
+                font-size: 1.1rem;
+                padding: 8px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                border-radius: 10px;
+            }
+
+            header {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .tips {
+                font-size: 1rem;
+            }
+
+            .stats {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .stat-card {
+                width: 80%;
+            }
+
+            th {
+                font-size: 0.9rem;
+            }
+
+            td {
+                font-size: 0.85rem;
+                padding: 10px 8px;
+            }
+
+            .date-col {
+                min-width: 110px;
+            }
+
+            .divider td {
+                font-size: 1rem;
+                padding: 6px 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>比赛生涯记录</h1>
+            <p class="subtitle">被选入的比赛是，线下的、有完整流程，我个人认为有认可度的比赛</p>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value">21</div>
+                    <div class="stat-label">总参赛数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">国奖</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">省奖</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">校奖</div>
+                </div>
+            </div>
+            <p class="tips">成绩结果依照证书，"铁奖"指 Honorable mention，即"参与奖"</p>
+            <p class="tips">高亮的比赛是其中有代表性的</p>
+        </header>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>比赛名称</th>
+                        <th>成绩结果</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="divider">
+                        <td colspan="4">开始的开始：成为预备队员</td>
+                    </tr>
+                    <tr>
+                        <td class="date-col">2022年10月04日</td>
+                        <td>2022 南京信息工程大学新生赛正式赛</td>
+                        <td class="medal-bronze">第三名</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td class="date-col">2023年04月16日</td>
+                        <td>2023年第一次省赛选拔赛</td>
+                        <td>第十八名</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="date-col">2023年04月29日</td>
+                        <td>2023年第二次省赛选拔赛</td>
+                        <td class="medal-gold">第一名</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td class="date-col">2023年04月23日</td>
+                        <td>第 14 届蓝桥杯江苏赛区 C/C++ 程序设计 B 组</td>
+                        <td class="medal-gold">江苏省一等奖</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="date-col">2023年05月07日</td>
+                        <td>南京信息工程大学第四届程序设计竞赛团体赛</td>
+                        <td class="medal-gold">金奖</td>
+                        <td>第四名</td>
+                    </tr>
+
+                    <tr class="divider">
+                        <td colspan="4">顺利的启航：通过选拔，成为正式队员</td>
+                    </tr>
+
+                    <tr>
+                        <td class="date-col">2023年05月28日</td>
+                        <td>2023 江苏省大学生程序设计大赛</td>
+                        <td class="medal-bronze">铜奖</td>
+                        <td>第一次代表学校参赛</td>
+                    </tr>
+                    <tr>
+                        <td class="date-col">2023年06月16日</td>
+                        <td>第 14 届蓝桥杯全国总决赛 C/C++ 程序设计 B 组</td>
+                        <td class="medal-bronze">国家三等奖</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="date-col">2023年10月21日</td>
+                        <td>南京信息工程大学2023年个人赛</td>
+                        <td class="medal-bronze">第三名</td>
+                        <td></td>
+                    </tr>
+
+
+                    <tr class="divider">
+                        <td colspan="4">中途的挫折：一段低谷期，一整个赛段，没有获奖</td>
+                    </tr>
+
+                    <tr>
+                        <td class="date-col">2023年10月29日</td>
+                        <td>2023 年中国大学生程序设计竞赛国赛桂林站</td>
+                        <td class="medal-iron">铁奖</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="date-col">2023年11月12日</td>
+                        <td>第 48 届 ICPC 国际大学生程序设计竞赛亚洲区域赛沈阳站</td>
+                        <td class="medal-iron">铁奖</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="date-col">2023年12月03日</td>
+                        <td>第 48 届 ICPC 国际大学生程序设计竞赛亚洲区域赛济南站</td>
+                        <td class="medal-iron">铁奖</td>
+                        <td></td>
+                    </tr>
+
+                    <!-- 2024年分隔行 -->
+                    <tr class="divider">
+                        <td colspan="4">幸运的成长：迎来转变，终于获得有“含金量”的奖牌了</td>
+                    </tr>
+
+                    <tr class="highlight-row">
+                        <td class="date-col">2024年05月12日</td>
+                        <td>2024 江苏省大学生程序设计大赛</td>
+                        <td class="medal-gold">金奖</td>
+                        <td></td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td class="date-col">2024年05月18日</td>
+                        <td>南京信息工程大学第五届程序设计竞赛团体赛</td>
+                        <td class="medal-gold">金奖</td>
+                        <td>亚军</td>
+                    </tr>
+                    <tr>
+                        <td class="date-col">2024年05月26日</td>
+                        <td>2024 年中国大学生程序设计竞赛 全国邀请赛 山东站</td>
+                        <td class="medal-iron">铁奖</td>
+                        <td></td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td class="date-col">2024年06月02日</td>
+                        <td>第 15 届蓝桥杯全国总决赛 C/C++ 程序设计 B 组</td>
+                        <td class="medal-silver">国家二等奖</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td class="date-col">2024年10月27日</td>
+                        <td>第 49 届 ICPC 国际大学生程序设计竞赛亚洲区域赛成都站</td>
+                        <td class="medal-bronze">铜奖</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="date-col">2024年11月10日</td>
+                        <td>2024 年中国大学生程序设计竞赛国赛重庆站</td>
+                        <td class="medal-bronze">铜奖</td>
+                        <td></td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td class="date-col">2024年11月17日</td>
+                        <td>2024 年中国大学生程序设计竞赛国赛郑州站</td>
+                        <td class="medal-silver">银奖</td>
+                        <td></td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td class="date-col">2024年12月01日</td>
+                        <td>第 49 届 ICPC 国际大学生程序设计竞赛亚洲区域赛昆明站</td>
+                        <td class="medal-silver">银奖</td>
+                        <td></td>
+                    </tr>
+                    <tr class="divider">
+                        <td colspan="4">最后的最后：退役，不再系统的训练或者做题</td>
+                    </tr>
+
+                    <tr>
+                        <td class="date-col">2025年05月11日</td>
+                        <td>2024 年中国大学生程序设计竞赛国赛总决赛</td>
+                        <td class="medal-bronze">铜奖</td>
+                        <td>学长实习，替补出赛</td>
+                    </tr>
+
+                    <tr class=>
+                        <td class="date-col">2025年06月23日</td>
+                        <td>第 15 届蓝桥杯全国总决赛 C/C++ 程序设计 B 组</td>
+                        <td class="medal-silver">国家二等奖</td>
+                        <td></td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p>数据更新至2024年12月 | 程序设计竞赛生涯记录</p>
+        </div>
+    </div>
+</body>
+
+</html>
